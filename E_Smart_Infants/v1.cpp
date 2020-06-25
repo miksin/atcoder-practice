@@ -11,6 +11,8 @@ int main () {
     vector<int> ratings(n + 1);
     vector<int> belongs(n + 1);
     map<int, multiset<int> > hasRatings;
+
+    // 'multiset' to store duplicated elements;
     multiset<int> kinderRatings;
 
     for (int i = 1; i <= n; i++) {
@@ -30,6 +32,7 @@ int main () {
         int from = belongs[target];
         belongs[target] = to;
 
+        // Use 'find' here to prevent from erasing more than one elements.
         kinderRatings.erase(kinderRatings.find(*(hasRatings[from].rbegin())));
         if (!hasRatings[to].empty()) {
             kinderRatings.erase(kinderRatings.find(*(hasRatings[to].rbegin())));
